@@ -40,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
       new String[] {
         Manifest.permission.BLUETOOTH,
         Manifest.permission.BLUETOOTH_ADMIN,
+        Manifest.permission.NFC,
         Manifest.permission.ACCESS_WIFI_STATE,
         Manifest.permission.CHANGE_WIFI_STATE,
         Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION,
       };
 
   private static final int REQUEST_CODE_REQUIRED_PERMISSIONS = 1;
@@ -106,12 +108,14 @@ public class MainActivity extends AppCompatActivity {
       new EndpointDiscoveryCallback() {
         @Override
         public void onEndpointFound(String endpointId, DiscoveredEndpointInfo info) {
-          Log.i(TAG, "onEndpointFound: endpoint found, connecting");
+          Log.i(TAG, "onEndpointFound: endpoint found, connecting" + endpointId);
           connectionsClient.requestConnection(codeName, endpointId, connectionLifecycleCallback);
         }
 
         @Override
-        public void onEndpointLost(String endpointId) {}
+        public void onEndpointLost(String endpointId) {
+          Log.i(TAG, "onEndpointLost: endpoint lost, le sigh " + endpointId);
+        }
       };
 
   // Callbacks for connections to other devices
