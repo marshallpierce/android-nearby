@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdk 34
     defaultConfig {
         applicationId "com.google.location.nearby.apps.rockpaperscissors"
-        minSdkVersion 23
-        targetSdkVersion 28
+        minSdkVersion 33
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
@@ -15,9 +15,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace = "com.google.location.nearby.apps.rockpaperscissors"
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.google.android.gms:play-services-nearby:15.0.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.gms:play-services-nearby:19.2.0'
+    implementation "androidx.activity:activity:1.9.0"
+    implementation "androidx.fragment:fragment:1.6.2"
+
 }
